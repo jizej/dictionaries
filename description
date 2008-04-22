@@ -13,3 +13,5 @@ Description: This file contains a specification for dictionaries, and
  (please follow the link http://coq.inria.fr/doc-eng.html )
 
 Keywords: modules  functors search-trees
+Category: Computer Science/Data Types and Data Structures
+Category: Miscellaneous/Extracted Programs/Data structures
