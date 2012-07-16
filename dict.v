@@ -18,6 +18,8 @@
                      Inria Futurs
 Dictionaries (after Paulson : ML for the working programmer) *)
 
+Set Asymmetric Patterns.
+
 Require Import Relations.
 Require Import List.
 
