@@ -111,7 +111,7 @@ End LKey.
 Require Import ZArith.
 Module ZKey : KEY with Definition A := Z.
   Definition A := Z.
-  Definition eqdec := Z_eq_dec.
+  Definition eqdec := Z.eq_dec.
 End ZKey.
 
 
