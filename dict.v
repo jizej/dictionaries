@@ -705,7 +705,7 @@ Module TDict (Key: DEC_ORDER) (Val: DATA) : DICT with Definition key := Key.A
      min_intro :
        (forall (k' : key) (v : data), occ v k' t -> Key.lt k k') -> min k t.
 
- Hint Resolve min_intro: searchtrees.
+ #[export] Hint Resolve min_intro: searchtrees.
 
 
 (*  key k is gretaer than every key in t  *)
@@ -713,7 +713,7 @@ Module TDict (Key: DEC_ORDER) (Val: DATA) : DICT with Definition key := Key.A
      maj_intro :
        (forall (k' : key) (v : data), occ v k' t -> Key.lt k' k) -> maj k t.
 
- Hint Resolve maj_intro: searchtrees.
+ #[export] Hint Resolve maj_intro: searchtrees.
 
 (* searchness predicate on binary trees *)
  Inductive search_tree : btree -> Prop :=
@@ -729,9 +729,9 @@ Module TDict (Key: DEC_ORDER) (Val: DATA) : DICT with Definition key := Key.A
        forall (k : key) (v : data) (t1 t2 : btree),
        is_bnode (bnode k v t1 t2).
 
- Hint Resolve is_bnode_intro: searchtrees.
+ #[export] Hint Resolve is_bnode_intro: searchtrees.
 
- Hint Resolve occ_root occ_l occ_r: searchtrees.
+ #[export] Hint Resolve occ_root occ_l occ_r: searchtrees.
 
  Derive Inversion_clear OCC_INV with
   (forall (k k' : key) (v v' : data) (t1 t2 : btree),
@@ -747,7 +747,7 @@ Module TDict (Key: DEC_ORDER) (Val: DATA) : DICT with Definition key := Key.A
   inversion H using OCC_INV; auto with searchtrees.
  Qed.
 
- Hint Resolve occ_inv: searchtrees.
+ #[export] Hint Resolve occ_inv: searchtrees.
 
  Lemma not_occ_Leaf : forall (k : key) (v : data), ~ occ v k leaf.
  Proof.
@@ -755,9 +755,9 @@ Module TDict (Key: DEC_ORDER) (Val: DATA) : DICT with Definition key := Key.A
   inversion_clear H.
  Qed.
 
- Hint Resolve not_occ_Leaf: searchtrees.
+ #[export] Hint Resolve not_occ_Leaf: searchtrees.
 
- Hint Resolve leaf_search_tree bnode_search_tree: searchtrees.
+ #[export] Hint Resolve leaf_search_tree bnode_search_tree: searchtrees.
 
  Lemma min_leaf : forall k : key, min k leaf.
  Proof.
@@ -765,14 +765,14 @@ Module TDict (Key: DEC_ORDER) (Val: DATA) : DICT with Definition key := Key.A
   inversion_clear 1.
  Qed.
 
- Hint Resolve min_leaf: searchtrees.
+ #[export] Hint Resolve min_leaf: searchtrees.
 
  Lemma maj_leaf : forall k : key, maj k leaf.
  Proof.
   intro k; apply maj_intro; inversion_clear 1.
  Qed.
 
- Hint Resolve maj_leaf: searchtrees.
+ #[export] Hint Resolve maj_leaf: searchtrees.
 
 
  Lemma maj_not_occ :
@@ -784,7 +784,7 @@ Module TDict (Key: DEC_ORDER) (Val: DATA) : DICT with Definition key := Key.A
   eauto.
  Qed.
 
- Hint Resolve maj_not_occ: searchtrees.
+ #[export] Hint Resolve maj_not_occ: searchtrees.
 
  Lemma min_not_occ :
   forall (k : key) (v : data) (t : btree), min k t -> ~ occ v k t.
@@ -795,7 +795,7 @@ Module TDict (Key: DEC_ORDER) (Val: DATA) : DICT with Definition key := Key.A
  Qed.
 
 
- Hint Resolve min_not_occ: searchtrees.
+ #[export] Hint Resolve min_not_occ: searchtrees.
 
 (* technical lemmas about some non-leaf search tree *)
 
@@ -884,7 +884,7 @@ Module TDict (Key: DEC_ORDER) (Val: DATA) : DICT with Definition key := Key.A
 
  End search_tree_basic_properties.
 
- Hint Resolve go_left go_right not_left not_right search_tree_l search_tree_r
+ #[export] Hint Resolve go_left go_right not_left not_right search_tree_l search_tree_r
    maj_l min_r: searchtrees.
 
 (* each key occurs at most once *)
@@ -993,7 +993,7 @@ Module TDict (Key: DEC_ORDER) (Val: DATA) : DICT with Definition key := Key.A
         occ v' p t' -> occ v' p t \/ n = p /\ v = v') ->
        search_tree t' -> INSERT n v t t'.
 
- Hint Resolve insert_intro: searchtrees.
+ #[export] Hint Resolve insert_intro: searchtrees.
 
 
  Definition insert_spec (n : key) (v : data) (t : btree) : Set :=
@@ -1007,7 +1007,7 @@ Module TDict (Key: DEC_ORDER) (Val: DATA) : DICT with Definition key := Key.A
   intro n; split; auto with searchtrees.
   intros p k H; inversion_clear H; auto with searchtrees. 
  Qed.
- Hint Resolve insert_leaf: searchtrees.
+ #[export] Hint Resolve insert_leaf: searchtrees.
 
 
 
@@ -1102,7 +1102,7 @@ Module TDict (Key: DEC_ORDER) (Val: DATA) : DICT with Definition key := Key.A
   inversion H; eauto with searchtrees.
  Qed.
 
- Hint Resolve insert_l insert_r insert_eq: searchtrees.
+ #[export] Hint Resolve insert_l insert_r insert_eq: searchtrees.
 
 
 
